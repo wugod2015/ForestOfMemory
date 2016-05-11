@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.wugod.forestofmemory"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="21" />
+    <!-- 使用相机 -->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <!-- ###################声明SDK使用的相关权限###################### -->
+    <!-- 检测网络状态 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 获取mac地址作为用户的备用唯一标识 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 获取用户手机的IMEI，用来唯一的标识用户 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 缓存资源优先存入SDcard -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 允许应用程序联网，以便向我们的服务器端发送数据 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 定位所需的权限 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+
+    <!-- 推送相关的权限 -->
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <!-- QQ、QQ空间所需权限 -->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+
+    <application
+        android:name="com.wugod.forestofmemory.BaseApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!-- 论坛版activity组件 start -->
+
+
+        <!-- 发现的Activity -->
+        <activity
+            android:name="com.umeng.commm.ui.activities.FindActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+
+        <!--  -->
+        <activity
+            android:name="com.umeng.commm.ui.activities.UserInfoActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <!--  -->
+        <activity
+            android:name="com.umeng.commm.ui.activities.TopicDetailActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <!--  -->
+        <activity
+            android:name="com.umeng.commm.ui.activities.FeedsActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+
+        <!-- 搜索结果Activity -->
+        <activity
+            android:name="com.umeng.commm.ui.activities.RelativeUserActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name="com.umeng.commm.ui.activities.SearchTopicActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
+        <!--  -->
+        <activity
+            android:name="com.umeng.commm.ui.activities.PostFeedActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="true"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+
+        <!--  -->
+        <activity
+            android:name="com.umeng.commm.ui.activities.ForwardActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <!-- 搜索Activity -->
+        <activity
+            android:name="com.umeng.commm.ui.activities.SearchActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+
+        <!-- feed详情页面 -->
+        <activity
+            android:name="com.umeng.commm.ui.activities.FeedDetailActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+
+        <!-- 引导页面activity -->
+        <activity android:name="com.umeng.commm.ui.activities.GuideActivity" />
+
+        <!-- 点赞用户页面 -->
+        <activity android:name="com.umeng.commm.ui.activities.LikeUsersActivity" />
+
+        <!-- 显示某个位置Feed的Activity -->
+        <activity android:name="com.umeng.commm.ui.activities.LocationFeedActivity" />
+        <activity android:name="com.umeng.commm.ui.activities.FollowedTopicActivity" />
+        <activity android:name="com.umeng.commm.ui.activities.TopicActivity" />
+        <activity android:name="com.umeng.commm.ui.activities.NotificationActivity" />
+        <activity android:name="com.umeng.commm.ui.activities.NewMsgActivity" />
+
+        <!-- 论坛版activity组件 end -->
+
+
+        <!-- 图片选择相关 -->
+        <activity android:name="com.umeng.common.ui.imagepicker.PhotoSelectorActivity" />
+        <activity android:name="com.umeng.common.ui.imagepicker.PhotoPreviewActivity" />
+        <activity android:name="com.umeng.common.ui.activities.MessageChatActivity" />
+        <activity
+            android:name="com.umeng.common.ui.activities.BrowserActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+        <!-- 设置页面activity -->
+        <activity android:name="com.umeng.common.ui.activities.SettingActivity" />
+
+        <!-- 友盟登录界面 -->
+        <activity android:name="com.umeng.community.login.LoginActivity" />
+
+        <!-- ##################分享相关#################### -->
+        <!-- 分享内容编辑页 -->
+        <activity
+            android:name="com.umeng.socialize.view.ShareActivity"
+            android:configChanges="orientation|keyboard"
+            android:launchMode="singleTask"
+            android:noHistory="true"
+            android:theme="@style/Theme.UMDialog"
+            android:windowSoftInputMode="stateVisible|adjustResize" >
+        </activity>
+
+        <!-- 腾讯SSO授权的Activity注册 -->
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="tencent1104606393" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity android:name="com.umeng.common.ui.activities.AlbumActivity" />
+        <!-- 微信回调activity -->
+        <activity
+            android:name="com.umeng.community.example.wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name="com.umeng.community.example.WBShareActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"
+            android:configChanges="keyboardHidden|orientation"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" >
+        </activity>
+
+        <service
+            android:name="com.sina.weibo.sdk.net.DownloadService"
+            android:exported="false" >
+        </service>
+        <!-- ##################### 推送相关 ##################### -->
+
+
+        <!-- 线上discuss demo Appkey -->
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="57314959e0f55a9b63001f93" >
+        </meta-data>
+        <!-- 友盟推送的app secret, 如果不使用友盟推送可以删除 -->
+        <meta-data
+            android:name="UMENG_MESSAGE_SECRET"
+            android:value="a56a4db7b0ba85b4b3c545c62acd8975" >
+        </meta-data>
+
+        <!-- 高德地图app key -->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="557e18d1afb32a69351be5abc7f1cd25" />
+    </application>
+
+</manifest>
