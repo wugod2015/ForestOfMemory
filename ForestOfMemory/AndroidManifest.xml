@@ -175,13 +175,13 @@
         <activity android:name="com.umeng.common.ui.activities.AlbumActivity" />
         <!-- 微信回调activity -->
         <activity
-            android:name="com.umeng.community.example.wxapi.WXEntryActivity"
+            android:name="com.wugod.forestofmemory.wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
-            android:name="com.umeng.community.example.WBShareActivity"
+            android:name="com.wugod.forestofmemory.WBShareActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
             <intent-filter>
@@ -212,7 +212,7 @@
         <!-- 友盟推送的app secret, 如果不使用友盟推送可以删除 -->
         <meta-data
             android:name="UMENG_MESSAGE_SECRET"
-            android:value="a56a4db7b0ba85b4b3c545c62acd8975" >
+            android:value="3e110cfb347319457d72f20ce7fbed2e" >
         </meta-data>
 
         <!-- 高德地图app key -->

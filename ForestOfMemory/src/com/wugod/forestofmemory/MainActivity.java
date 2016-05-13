@@ -1,5 +1,6 @@
 package com.wugod.forestofmemory;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -7,18 +8,25 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.umeng.comm.core.CommunitySDK;
-import com.umeng.comm.core.impl.CommunityFactory;
+import com.umeng.comm.core.beans.CommUser;
+import com.umeng.comm.core.beans.Source;
+import com.umeng.comm.core.constants.ErrorCode;
+import com.umeng.comm.core.login.LoginListener;
+import com.umeng.comm.core.utils.CommonUtils;
 import com.umeng.commm.ui.fragments.CommunityMainFragment;
 
+@SuppressLint("NewApi")
 public class MainActivity extends ActionBarActivity implements
 		NavigationDrawerFragment.NavigationDrawerCallbacks {
+
+	private final String TAG = "MainActivity";
 
 	/**
 	 * Fragment managing the behaviors, interactions and presentation of the
@@ -45,25 +53,56 @@ public class MainActivity extends ActionBarActivity implements
 		mNavigationDrawerFragment.setUp(R.id.navigation_drawer,
 				(DrawerLayout) findViewById(R.id.drawer_layout));
 
-		CommunitySDK mCommSDK = CommunityFactory.getCommSDK(this);
-		// ³õÊ¼»¯sdk£¬Çë´«µİApplicationContext
-		mCommSDK.initSDK(this);
-
 	}
 
 	@Override
 	public void onNavigationDrawerItemSelected(int position) {
 		// update the main content by replacing fragments
-		FragmentManager fragmentManager = getSupportFragmentManager();
+		final FragmentManager fragmentManager = getSupportFragmentManager();
 		switch (position) {
 		case 0:
+			if (!CommonUtils.isLogin(BaseApplication.instance
+					.getApplicationContext())) {
+				CommUser user = new CommUser();
+				user.name = "å¼‹ç—•å¤•2016";
+				user.id = "20160511";
+				BaseApplication.instance.getmCommSDK()
+						.loginToUmengServerBySelfAccount(this, user.name,
+								user.id, new LoginListener() {
+									@Override
+									public void onStart() {
 
-			CommunityMainFragment mFeedsFragment = new CommunityMainFragment();
-			// ÉèÖÃFeedÁ÷Ò³ÃæµÄ·µ»Ø°´Å¥²»¿É¼û
-			mFeedsFragment.setBackButtonVisibility(View.INVISIBLE);
+									}
 
-			fragmentManager.beginTransaction()
-					.replace(R.id.container, mFeedsFragment).commit();
+									@Override
+									public void onComplete(int stCode,
+											CommUser commUser) {
+										Log.d(TAG, "login result is" + stCode); // ï¿½ï¿½È¡ï¿½ï¿½Â¼ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½
+										if (ErrorCode.NO_ERROR == stCode) {
+											// ï¿½Ú´Ë´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½Îºï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½activity
+
+											CommunityMainFragment mFeedsFragment = new CommunityMainFragment();
+											// ï¿½ï¿½ï¿½ï¿½Feedï¿½ï¿½Ò³ï¿½ï¿½Ä·ï¿½ï¿½Ø°ï¿½Å¥ï¿½ï¿½ï¿½É¼ï¿½
+											mFeedsFragment
+													.setBackButtonVisibility(View.INVISIBLE);
+
+											fragmentManager
+													.beginTransaction()
+													.replace(R.id.container,
+															mFeedsFragment)
+													.commit();
+										}
+
+									}
+								});
+			} else {
+				CommunityMainFragment mFeedsFragment = new CommunityMainFragment();
+				// è®¾ç½®Feedæµé¡µé¢çš„è¿”å›æŒ‰é’®ä¸å¯è§
+				mFeedsFragment.setBackButtonVisibility(View.INVISIBLE);
+
+				fragmentManager.beginTransaction()
+						.replace(R.id.container, mFeedsFragment).commit();
+			}
 			break;
 
 		case 1:
